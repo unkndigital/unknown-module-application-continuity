@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "id": "application-continuity",
+  "version": "1.0.2",
+  "minCoreVersion": "0.4.6",
+  "title": "Application Continuity",
+  "description": "Maintains the local app-retention marker without contacting an LG session service; shows the installed developer-app inventory.",
+  "disableDescription": "Stops checking and recreating the retention marker. The marker and installed apps are deliberately left intact because removing the marker could cause app data to be deleted. Independent backups remain necessary.",
+  "publisher": "Unknown Digital and Unknown Suite contributors",
+  "license": "MIT",
+  "requiresRoot": true,
+  "entry": "module.js",
+  "permissions": [
+    "Runs as root; declarations are not a sandbox",
+    "May create the local app-retention directory only if its exact path is absent; never replaces an existing file or link",
+    "Does not remove the retention marker when disabled because that can trigger application-data deletion"
+  ],
+  "actions": {
+    "status": {
+      "title": "View current status",
+      "description": "Shows whether retention maintenance is enabled, the marker's current type, and installed developer apps. An existing marker is not a guarantee against future cleanup or firmware changes.",
+      "readOnly": true,
+      "parameters": {}
+    },
+    "health": {
+      "title": "Check module health",
+      "description": "Checks that the expected retention directory exists when maintenance is requested. It does not check configuration backups or guarantee app survival across every update.",
+      "readOnly": true,
+      "parameters": {}
+    },
+    "maintenance": {
+      "title": "Reapply saved settings",
+      "description": "Checks the app-retention marker and recreates it only if missing and maintenance is saved as ON. An existing file or link is left untouched. No apps are reinstalled and no LG session is renewed.",
+      "readOnly": false,
+      "parameters": {}
+    },
+    "setMaintenance": {
+      "title": "Apply retention maintenance",
+      "readOnly": false,
+      "parameters": {
+        "enabled": {
+          "type": "boolean",
+          "title": "Requested app-retention maintenance",
+          "description": "ON checks the marker regularly and recreates it when safely possible. OFF stops those checks but leaves the marker, apps and app data in place.",
+          "currentValue": {
+            "path": [
+              "maintenanceEnabled"
+            ]
+          }
+        }
+      },
+      "description": "Changes whether Core maintains the local app-retention marker. This reduces one cleanup risk but does not back up apps or their configuration."
+    }
+  }
+}
