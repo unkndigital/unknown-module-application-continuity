@@ -1,1 +1,1 @@
-4b531bdef6d318356a9095001b47759e9cb03fc2a160bcda0ec47a89c07f211b  application-continuity-1.0.2.zip
+780218007c86a661d0cb9080b1ea33c1e66b5671fd7807a7748de9a1461e2853  application-continuity-1.1.0.zip

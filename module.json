@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "id": "application-continuity",
-  "version": "1.0.2",
-  "minCoreVersion": "0.4.6",
+  "version": "1.1.0",
+  "minCoreVersion": "0.8.0",
   "title": "Application Continuity",
   "description": "Maintains the local app-retention marker without contacting an LG session service; shows the installed developer-app inventory.",
   "disableDescription": "Stops checking and recreating the retention marker. The marker and installed apps are deliberately left intact because removing the marker could cause app data to be deleted. Independent backups remain necessary.",
@@ -51,5 +51,6 @@
       },
       "description": "Changes whether Core maintains the local app-retention marker. This reduces one cleanup risk but does not back up apps or their configuration."
     }
-  }
+  },
+  "updateStrategy": "enable"
 }
